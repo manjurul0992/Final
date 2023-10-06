@@ -1,0 +1,66 @@
+﻿@model Final.Models.ViewModels.PlayerVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center">Edit Player</h1>
+<div class="container">
+    <form asp-action="Edit" asp-controller="Players" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div asp-validation-summary="ModelOnly"></div>
+                <input asp-for="PlayerId" type="hidden" />
+                <input asp-for="Picture" type="hidden" />
+
+                <div class="form-group">
+                    <label for="PlayerName">Player Name</label>
+                    <input asp-for="PlayerName" class="form-control" id="PlayerName" />
+                    <span asp-validation-for="PlayerName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="DateOfBirth">Date of Birth</label>
+                    <input asp-for="DateOfBirth" type="date" class="form-control" id="DateOfBirth" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="Phone">Phone</label>
+                    <input asp-for="Phone" class="form-control" id="Phone" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="PicturePath">Picture Path</label>
+                    <input asp-for="PicturePath" class="form-control" id="PicturePath" />
+                    <img src="@Model.Picture" width="80" />
+                    <span asp-validation-for="PicturePath" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="MaritalStatus">Marital Status</label>
+                    <input asp-for="MaritalStatus" type="checkbox" id="MaritalStatus" />
+                    <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+                </div>
+                <div class="col-11">
+                    <div>
+                        <div>
+                            <a id="btnAdd" class="custom-link">+ADD</a>
+                        </div>
+                        <div id="FormatContainer">
+                            @foreach (var item in Model.FormatList)
+                            {
+                                <script>
+                                    LoadData(@item);
+                                </script>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
+            </div>
+            
+        </div>
+    </form>
+</div>
